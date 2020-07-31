@@ -1,0 +1,28 @@
+server:
+  port: 8060
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shopping?useUnicode=true&characterEncoding=utf-8&serverTimezone=CTT
+    username: root
+    password: root
+#    type:com.alibaba.druid.pool.DruidDataSource
+    hikari:
+      max-lifetime: 1765000
+      maximum-pool-size: 15
+  aop:
+    proxy-target-class: true
+    auto: true
+
+#mybatis-plus配置
+mybatis-plus:
+  global-config:
+    db-config:
+      field-strategy: not_empty
+      id-type: auto
+      db-type: mysql
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    banner: false
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.su.entity

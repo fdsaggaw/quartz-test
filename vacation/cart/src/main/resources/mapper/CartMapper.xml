@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.su.dao.CartDao">
+    <resultMap type="com.su.entity.Cart" id="cartMap">
+        <result column="user_id" property="userId"/>
+        <result column="product_id" property="productId"/>
+    </resultMap>
+    <insert id="insertProduct" parameterType="Cart" >
+        insert into cart (user_id,product_id,quantity,amount) values (#{userId},#{productId},#{quantity},#{amount})
+    </insert>
+    <select id="findProductByProductIdAndUserId" parameterType="Long" resultMap="cartMap">
+        select * from cart where product_id = #{productId} and user_id= #{userId}
+    </select>
+    <update id="updateQuantityAndAmount" parameterType="Cart">
+        update cart set quantity = #{quantity},amount = #{amount} where id = #{id}
+    </update>
+    <select id="findAll" parameterType="Long"  resultMap="cartMap">
+        select * from cart where user_id = #{userId}
+    </select>
+    <delete id="deleteProductById" parameterType="Long" >
+        delete from cart where id = #{id}
+    </delete>
+    <select id="findProductById" parameterType="Long"  resultMap="cartMap">
+        select * from cart where id = #{id}
+    </select>
+</mapper>
